@@ -2,7 +2,9 @@ import NewsService from '../services/news.service';
 
 const topHeadlines = (req, res) => {
   const { query } = req;
-  return NewsService.topHeadlines(query)
+  const enLangQuery = Object.assign(query, { language: 'en' });
+
+  return NewsService.topHeadlines(enLangQuery)
     .then(response => {
       return res.json(response);
     })
@@ -14,7 +16,9 @@ const topHeadlines = (req, res) => {
 
 const sources = (req, res) => {
   const { query } = req;
-  return NewsService.sources(query)
+  const enLangQuery = Object.assign(query, { language: 'en' });
+
+  return NewsService.sources(enLangQuery)
     .then(response => {
       return res.json(response);
     })
