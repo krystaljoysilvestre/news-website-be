@@ -1,7 +1,8 @@
-const NewsAPI = require('newsapi');
+import NewsAPI from 'newsapi';
+
 const newsapi = new NewsAPI(process.env.NEWS_API_KEY);
 
-module.exports.topHeadlines = function topHeadlines(req, res) {
+const topHeadlines = (params) => {
   return newsapi.v2.topHeadlines({
     sources: '',
     q: '',
@@ -14,3 +15,6 @@ module.exports.topHeadlines = function topHeadlines(req, res) {
   });
 };
 
+export default {
+  topHeadlines
+}

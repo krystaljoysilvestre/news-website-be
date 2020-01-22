@@ -1,14 +1,19 @@
 const NewsAPI = require('newsapi');
 const newsapi = new NewsAPI(process.env.NEWS_API_KEY);
 
-module.exports.topHeadlines = function topHeadlines(req, res) {
+const topHeadlines = (req, res) => {
+  const { sources, q, category } = req.query;
   return newsapi.v2.topHeadlines({
-    sources: req.query.sources,
-    q: req.query.q,
-    category: req.query.category,
+    sources,
+    q,
+    category,
     language: 'en',
     country: 'us'
   }).then(response => {
     return res.json(response);
   });
 };
+
+export default {
+  topHeadlines
+}
