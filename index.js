@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 
 const app = express();
 
@@ -6,6 +7,7 @@ require('dotenv').config();
 
 const index = require('./src/routes/index');
 
+app.use(cors());
 app.use('/api', index);
 
 app.use((req, res, next) => {
@@ -24,6 +26,4 @@ app.use((err, req, res, next) => {
   res.json(error);
 });
 
-// app.get('/', (req, res) => res.send('Hello World!'));
-
-app.listen(process.env.PORT, () => console.log(`Example app listening on port ${process.env.PORT}!`));
+app.listen(process.env.PORT, () => console.log(`App listening on port ${process.env.PORT}!`));

@@ -3,13 +3,12 @@ const newsapi = new NewsAPI(process.env.NEWS_API_KEY);
 
 module.exports.topHeadlines = function topHeadlines(req, res) {
   return newsapi.v2.topHeadlines({
-    sources: '',
-    q: '',
-    category: '',
+    sources: req.query.sources,
+    q: req.query.q,
+    category: req.query.category,
     language: 'en',
     country: 'us'
   }).then(response => {
-    // console.log(response);
     return res.json(response);
   });
 };
