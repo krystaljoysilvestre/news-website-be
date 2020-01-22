@@ -1,17 +1,15 @@
-const NewsAPI = require('newsapi');
-const newsapi = new NewsAPI(process.env.NEWS_API_KEY);
+import NewsService from '../services/news.service';
 
 const topHeadlines = (req, res) => {
-  const { sources, q, category } = req.query;
-  return newsapi.v2.topHeadlines({
-    sources,
-    q,
-    category,
-    language: 'en',
-    country: 'us'
-  }).then(response => {
-    return res.json(response);
-  });
+  const { query } = req;
+  return NewsService.topHeadlines(query)
+    .then(response => {
+      return res.json(response);
+    })
+    .catch(err => {
+      console.log('Top Headlines Error: ', err);
+      return res.status(500).json('Failed to retrieve top headlines')
+    });
 };
 
 export default {
