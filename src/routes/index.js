@@ -8,5 +8,6 @@ router.get('/', (req, res) => {
 });
 
 router.get('/news', NewsController.topHeadlines);
+router.get('/sources', NewsController.sources);
 
 module.exports = router;

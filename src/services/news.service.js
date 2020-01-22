@@ -6,6 +6,11 @@ const topHeadlines = (params) => {
   return newsapi.v2.topHeadlines(params);
 };
 
+const sources = (params) => {
+  return newsapi.v2.sources(params);
+};
+
 export default {
-  topHeadlines
+  topHeadlines,
+  sources
 }
